@@ -28,8 +28,7 @@ namespace GettingRealUngHuset
             switch (input)
             {
 
-                case "1":
-                    LoanMenu();
+                case "1": LoanMenu();
                     break;
 
                 case "2":
@@ -58,12 +57,26 @@ namespace GettingRealUngHuset
         }
         private static void LoanMenu()  //udlåningsmenuen
         {
-            Console.Clear();
-            Console.WriteLine("indtast ID på materiale");
-            string MaterialID = Console.ReadLine();
+            Controller controller = new Controller();
 
+            Console.Clear();
+            Console.WriteLine("Indtast fornavn:");
+            string username = Console.ReadLine();
+            Console.WriteLine("Indtast efternavn:");
+            string userLastname = Console.ReadLine();
+            Console.WriteLine("Indtast telefonnummer:");
+            string userPhone = Console.ReadLine();
+            Console.WriteLine("Indtast Email:");
+            string userEmail = Console.ReadLine();
+
+            controller.InsertUser(username, userLastname, userPhone, userEmail);
+
+            ChooseType();
 
         }
+
+
+
 
         private static void CreateAndDeleteMenu()
         {
@@ -109,5 +122,64 @@ namespace GettingRealUngHuset
 
 
         }
+
+
+        private static void ChooseType() // her vælger man type af materiale, kan genanvendes flere gange
+        {
+
+
+
+            Console.Clear();
+
+            Console.WriteLine("vælg type af materiale \n" +
+                "1. Kamera \n" +
+                "2. Kabler \n" +
+                "3. lokaler");
+            string input = Console.ReadLine();
+            string output = "";
+
+            switch (input)
+            {
+                case "1":
+                    output = "Kamera";
+                    break;
+                case "2":
+                    output = "Kabler";
+                    break;
+
+            }
+
+            ChooseMaterial(output);
+
+        }
+
+        private static void ChooseMaterial(string Input)
+        {
+            Console.Clear();
+            Console.WriteLine(Input);
+            Console.WriteLine("1. Kamera med ID K1\n" +
+                "osv");
+            string input = Console.ReadLine();
+
+
+
+        }
+
+        private static void LoanMore()
+        {
+            Console.Clear();
+            Console.WriteLine("skal der lånes mere?\n" +
+                "1. ja\n" +
+                "2.nej");
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1": ChooseType();
+                    break;
+                case "2": mainMenu(); // skal nok være en bekræfelse inden slutningen
+                    break;
+            }
+        }
+
     }
 }
