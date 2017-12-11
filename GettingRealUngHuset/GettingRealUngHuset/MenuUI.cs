@@ -28,8 +28,7 @@ namespace GettingRealUngHuset
             switch (input)
             {
 
-                case "1":
-                    LoanMenu();
+                case "1": LoanMenu();
                     break;
 
                 case "2":
@@ -58,10 +57,21 @@ namespace GettingRealUngHuset
         }
         private static void LoanMenu()  //udlåningsmenuen
         {
-            Console.Clear();
-            Console.WriteLine("indtast ID på materiale");
-            string MaterialID = Console.ReadLine();
+            Controller controller = new Controller();
 
+            Console.Clear();
+            Console.WriteLine("Indtast fornavn:");
+            string username = Console.ReadLine();
+            Console.WriteLine("Indtast efternavn:");
+            string userLastname = Console.ReadLine();
+            Console.WriteLine("Indtast telefonnummer:");
+            string userPhone = Console.ReadLine();
+            Console.WriteLine("Indtast Email:");
+            string userEmail = Console.ReadLine();
+
+            controller.InsertUser(username, userLastname, userPhone, userEmail);
+
+           
 
         }
 
