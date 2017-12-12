@@ -8,9 +8,12 @@ namespace GettingRealUngHuset
 {
     class MenuUI
     {
+        
 
         public static void mainMenu()
         {
+            
+
             Console.Clear();
             Console.WriteLine("udlåningssystem\n" +
                 "1. udlån\n" +
@@ -24,22 +27,22 @@ namespace GettingRealUngHuset
                 "9. Andet\n" +
                 "0. Afslut");
             string input = Console.ReadLine();
-
+            
             switch (input)
             {
 
                 case "1": LoanMenu();
                     break;
 
-                case "2":
+                case "2":  //udlånt
+                    ChooseType();
+                    break;
+
+                case "3": //hjemme
 
                     break;
 
-                case "3":
-
-                    break;
-
-                case "4":
+                case "4": //retuner
 
                     break;
 
@@ -47,7 +50,7 @@ namespace GettingRealUngHuset
                     CreateAndDeleteMenu();
                     break;
 
-                case "0":
+                case "0": //afslut
                     Environment.Exit(0);
                     break;
             }
@@ -57,6 +60,7 @@ namespace GettingRealUngHuset
         }
         private static void LoanMenu()  //udlåningsmenuen
         {
+            
             Controller controller = new Controller();
 
             Console.Clear();
@@ -152,6 +156,11 @@ namespace GettingRealUngHuset
             ChooseMaterial(output);
 
         }
+        private static void ShowType()
+        {
+            Console.Clear();
+
+        }
 
         private static void ChooseMaterial(string Input)
         {
@@ -161,7 +170,11 @@ namespace GettingRealUngHuset
                 "osv");
             string input = Console.ReadLine();
 
-
+            LoanMore();
+        }
+        private static void CheckHome()
+           
+        {
 
         }
 
@@ -176,9 +189,23 @@ namespace GettingRealUngHuset
             {
                 case "1": ChooseType();
                     break;
-                case "2": mainMenu(); // skal nok være en bekræfelse inden slutningen
+                case "2": Confirmation(); // skal nok være en bekræfelse inden slutningen
                     break;
             }
+        }
+
+
+
+
+
+
+        private static void Confirmation()
+        {
+            Console.Clear();
+            Console.WriteLine("Bruger har lånt materiale 1,2,3\n" +
+                "enter for hovedmenu");
+            Console.ReadLine();
+            mainMenu();
         }
 
     }
