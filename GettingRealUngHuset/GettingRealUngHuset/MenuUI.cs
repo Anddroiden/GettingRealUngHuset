@@ -8,9 +8,12 @@ namespace GettingRealUngHuset
 {
     class MenuUI
     {
+        
 
         public static void mainMenu()
         {
+            
+
             Console.Clear();
             Console.WriteLine("udlåningssystem\n" +
                 "1. udlån\n" +
@@ -24,22 +27,22 @@ namespace GettingRealUngHuset
                 "9. Andet\n" +
                 "0. Afslut");
             string input = Console.ReadLine();
-
+            
             switch (input)
             {
 
                 case "1": LoanMenu();
                     break;
 
-                case "2":
+                case "2":  //udlånt
+                    ChooseType();
+                    break;
+
+                case "3": //hjemme
 
                     break;
 
-                case "3":
-
-                    break;
-
-                case "4":
+                case "4": //retuner
 
                     break;
 
@@ -47,7 +50,7 @@ namespace GettingRealUngHuset
                     CreateAndDeleteMenu();
                     break;
 
-                case "0":
+                case "0": //afslut
                     Environment.Exit(0);
                     break;
             }
@@ -57,6 +60,7 @@ namespace GettingRealUngHuset
         }
         private static void LoanMenu()  //udlåningsmenuen - Intast bruger Info
         {
+            
             Controller controller = new Controller();
 
             Console.Clear();
@@ -71,24 +75,8 @@ namespace GettingRealUngHuset
 
             controller.InsertUser(username, userLastname, userPhone, userEmail);
 
-            
+           
 
-
-        }
-
-        private static void ChooseMaterial()
-        {
-            Console.WriteLine("1. Kamara \n");
-            Console.WriteLine("2. Kabel");
-            string materialeChoise = Console.ReadLine();
-            
-            switch(materialeChoise)
-            {
-                case "1":
-                    break;
-                case "2":
-                    break;
-            }
         }
 
         private static void CreateAndDeleteMenu()
@@ -135,5 +123,87 @@ namespace GettingRealUngHuset
 
 
         }
+
+
+        private static void ChooseType() // her vælger man type af materiale, kan genanvendes flere gange
+        {
+
+
+
+            Console.Clear();
+
+            Console.WriteLine("vælg type af materiale \n" +
+                "1. Kamera \n" +
+                "2. Kabler \n" +
+                "3. lokaler");
+            string input = Console.ReadLine();
+            string output = "";
+
+            switch (input)
+            {
+                case "1":
+                    output = "Kamera";
+                    break;
+                case "2":
+                    output = "Kabler";
+                    break;
+
+            }
+
+            ChooseMaterial(output);
+
+        }
+        private static void ShowType()
+        {
+            Console.Clear();
+
+        }
+
+        private static void ChooseMaterial(string Input)
+        {
+            Console.Clear();
+            Console.WriteLine(Input);
+            Console.WriteLine("1. Kamera med ID K1\n" +
+                "osv");
+            string input = Console.ReadLine();
+
+            LoanMore();
+        }
+        private static void CheckHome()
+           
+        {
+
+        }
+
+        private static void LoanMore()
+        {
+            Console.Clear();
+            Console.WriteLine("skal der lånes mere?\n" +
+                "1. ja\n" +
+                "2.nej");
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1": ChooseType();
+                    break;
+                case "2": Confirmation(); // skal nok være en bekræfelse inden slutningen
+                    break;
+            }
+        }
+
+
+
+
+
+
+        private static void Confirmation()
+        {
+            Console.Clear();
+            Console.WriteLine("Bruger har lånt materiale 1,2,3\n" +
+                "enter for hovedmenu");
+            Console.ReadLine();
+            mainMenu();
+        }
+
     }
 }
