@@ -55,7 +55,7 @@ namespace GettingRealUngHuset
 
 
         }
-        private static void LoanMenu()  //udlåningsmenuen
+        private static void LoanMenu()  //udlåningsmenuen - Intast bruger Info
         {
             Controller controller = new Controller();
 
@@ -71,8 +71,24 @@ namespace GettingRealUngHuset
 
             controller.InsertUser(username, userLastname, userPhone, userEmail);
 
-           
+            
 
+
+        }
+
+        private static void ChooseMaterial()
+        {
+            Console.WriteLine("1. Kamara \n");
+            Console.WriteLine("2. Kabel");
+            string materialeChoise = Console.ReadLine();
+            
+            switch(materialeChoise)
+            {
+                case "1":
+                    break;
+                case "2":
+                    break;
+            }
         }
 
         private static void CreateAndDeleteMenu()
