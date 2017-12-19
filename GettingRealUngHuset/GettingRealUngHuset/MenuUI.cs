@@ -9,7 +9,6 @@ namespace GettingRealUngHuset
     class MenuUI
     {
         
-
         public static void mainMenu()
         {
             
@@ -34,21 +33,18 @@ namespace GettingRealUngHuset
                 case "1": LoanMenu();
                     break;
 
-                case "2":  //udlånt
-                    ChooseType();
+                case "2":
+                    ChooseTypeHome();
                     break;
 
-                case "3": //hjemme
-
+                case "3":
+                    ChooseTypeHome();
                     break;
 
                 case "4": //retuner
 
                     break;
 
-                case "9":
-                    CreateAndDeleteMenu();
-                    break;
 
                 case "0": //afslut
                     Environment.Exit(0);
@@ -60,9 +56,7 @@ namespace GettingRealUngHuset
         }
         private static void LoanMenu()  //udlåningsmenuen - Intast bruger Info
         {
-            
             Controller controller = new Controller();
-
             Console.Clear();
             Console.WriteLine("Indtast fornavn:");
             string username = Console.ReadLine();
@@ -74,61 +68,58 @@ namespace GettingRealUngHuset
             string userEmail = Console.ReadLine();
 
             controller.InsertUser(username, userLastname, userPhone, userEmail);
+            Console.Clear();
+            controller.GetIDFromLoaner(username, userLastname, userPhone, userEmail);
 
-           
-
+            
+            ChooseTypeHome();
+            
         }
 
-        private static void CreateAndDeleteMenu()
+        private static void ChooseTypeHome() // her vælger man type af materiale, kan genanvendes flere gange -- Case 3 HJEMME
         {
+            
             Console.Clear();
-            Console.WriteLine(
-                "1. Opret ny type materiale\n" +
-                "2. tilføj til eksisterende materialen \n" +
-                "\n" +
-                "\n" +
-                "5. Fjern type af materiale (f.eks alle kamerarer)\n" +
-                "6. Fjern materiale\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "0. Tilbage");
-
+            Console.WriteLine("vælg type af materiale \n" +
+                "1. Kamera \n" +
+                "2. Kabler \n" +
+                "3. lokaler");
             string input = Console.ReadLine();
-
+            
             switch (input)
             {
-                case "1":
-
+                case "1": ShowKamaraHome();
                     break;
-                case "2":
-
+                case "2": ShowKabelHome();
                     break;
-
-                case "5":
-
-                    break;
-
-                case "6":
-
-                    break;
-
-                case "0":
-                    mainMenu();
-                    break;
-
-
-
             }
+        }
 
+        public static void ShowKamaraHome() // Kamara der er HJEMME
+        {
+            Controller controller = new Controller();
+
+            Console.Clear();
+            controller.GetKamaralistHome();
+            Console.WriteLine("Instast Kamera nummer der skal lånes:");
+            string KamaraID = Console.ReadLine();
+
+            controller.InsertKameraIDInMaterial(KamaraID);
+
+            controller.GetIDFromMatriale_Kamera(KamaraID); // retunere ikke 
+            Console.ReadLine();
 
         }
 
-
-        private static void ChooseType() // her vælger man type af materiale, kan genanvendes flere gange
+        private static void ShowKabelHome() // Kabler der er HJEMME
         {
+            Console.Clear();
+            Controller controller = new Controller();
+            controller.GetKabellistHome();
+        }
 
-
+        private static void ChooseTypeLoaned() //  Case 2 Udlånt
+        {
 
             Console.Clear();
 
@@ -137,73 +128,74 @@ namespace GettingRealUngHuset
                 "2. Kabler \n" +
                 "3. lokaler");
             string input = Console.ReadLine();
-            string output = "";
+
 
             switch (input)
             {
                 case "1":
-                    output = "Kamera";
+                    ShowKamaraLoaned();
                     break;
                 case "2":
-                    output = "Kabler";
-                    break;
-
-            }
-
-            ChooseMaterial(output);
-
-        }
-        private static void ShowType()
-        {
-            Console.Clear();
-
-        }
-
-        private static void ChooseMaterial(string Input)
-        {
-            Console.Clear();
-            Console.WriteLine(Input);
-            Console.WriteLine("1. Kamera med ID K1\n" +
-                "osv");
-            string input = Console.ReadLine();
-
-            LoanMore();
-        }
-        private static void CheckHome()
-           
-        {
-
-        }
-
-        private static void LoanMore()
-        {
-            Console.Clear();
-            Console.WriteLine("skal der lånes mere?\n" +
-                "1. ja\n" +
-                "2.nej");
-            string input = Console.ReadLine();
-            switch (input)
-            {
-                case "1": ChooseType();
-                    break;
-                case "2": Confirmation(); // skal nok være en bekræfelse inden slutningen
+                    ShowKabelLoaned();
                     break;
             }
         }
 
-
-
-
-
-
-        private static void Confirmation()
+        private static void ShowKamaraLoaned() // Kamara der er HJEMME
         {
             Console.Clear();
-            Console.WriteLine("Bruger har lånt materiale 1,2,3\n" +
-                "enter for hovedmenu");
-            Console.ReadLine();
-            mainMenu();
+            Controller controller = new Controller();
+            controller.GetKamaralistHome();
         }
+
+        private static void ShowKabelLoaned() // Kabler der er HJEMME
+        {
+            Console.Clear();
+            Controller controller = new Controller();
+            controller.GetKabellistHome();
+        }
+
+        //private static void ShowType()
+        //{
+
+
+
+        //}
+
+        //private static void ChooseMaterial(string Input)
+        //{
+
+        //}
+        //private static void CheckHome()
+
+        //{
+
+        //}
+
+        //private static void LoanMore()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("skal der lånes mere?\n" +
+        //        "1. ja\n" +
+        //        "2.nej");
+        //    string input = Console.ReadLine();
+        //    switch (input)
+        //    {
+        //        case "1": ChooseType();
+        //            break;
+        //        case "2": Confirmation(); // skal nok være en bekræfelse inden slutningen
+        //            break;
+        //    }
+        //}
+
+        //private static void Confirmation()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("Bruger har lånt materiale 1,2,3\n" +
+        //        "enter for hovedmenu");
+        //    Console.ReadLine();
+        //    mainMenu();
+        //}
 
     }
 }
