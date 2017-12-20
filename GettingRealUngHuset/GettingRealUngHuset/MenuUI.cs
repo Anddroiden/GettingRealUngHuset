@@ -8,12 +8,23 @@ namespace GettingRealUngHuset
 {
     class MenuUI
     {
-        
+        public static bool CheckForLoan = false;
+        public static string username = "";
+        public static string userLastname = "";
+        public static string userPhone = "";
+        public static string userEmail = "";
+
+
+
         public static void mainMenu()
         {
-            
+            CheckForLoan = false;
+            username = "";
+        userLastname = "";
+        userPhone = "";
+        userEmail = "";
 
-            Console.Clear();
+        Console.Clear();
             Console.WriteLine("udlåningssystem\n" +
                 "1. udlån\n" +
                 "2. Udlånt\n" +
@@ -30,7 +41,10 @@ namespace GettingRealUngHuset
             switch (input)
             {
 
-                case "1": LoanMenu();
+                case "1":
+                    CheckForLoan = true;
+                    LoanMenu();
+                    
                     break;
 
                 case "2":
@@ -38,7 +52,7 @@ namespace GettingRealUngHuset
                     break;
 
                 case "3":
-                    ChooseTypeHome();
+                    ChooseTypeHome(); // 2 og 3 er de samme pt.
                     break;
 
                 case "4": //retuner
@@ -59,13 +73,13 @@ namespace GettingRealUngHuset
             Controller controller = new Controller();
             Console.Clear();
             Console.WriteLine("Indtast fornavn:");
-            string username = Console.ReadLine();
+            username = Console.ReadLine();
             Console.WriteLine("Indtast efternavn:");
-            string userLastname = Console.ReadLine();
+            userLastname = Console.ReadLine();
             Console.WriteLine("Indtast telefonnummer:");
-            string userPhone = Console.ReadLine();
+            userPhone = Console.ReadLine();
             Console.WriteLine("Indtast Email:");
-            string userEmail = Console.ReadLine();
+            userEmail = Console.ReadLine();
 
             controller.InsertUser(username, userLastname, userPhone, userEmail);
             Console.Clear();
@@ -101,13 +115,32 @@ namespace GettingRealUngHuset
 
             Console.Clear();
             controller.GetKamaralistHome();
-            Console.WriteLine("Instast Kamera nummer der skal lånes:");
-            string KamaraID = Console.ReadLine();
 
-            controller.InsertKameraIDInMaterial(KamaraID);
+            if (CheckForLoan == true)
+            {
+                Console.WriteLine("Instast Kamera nummer der skal lånes:");
+                string KamaraID = Console.ReadLine();
 
-            controller.GetIDFromMatriale_Kamera(KamaraID); // retunere ikke 
-            Console.ReadLine();
+                controller.InsertKameraIDInMaterial(KamaraID);
+
+                controller.GetIDFromMatriale_Kamera(KamaraID); // retunere ikke 
+                Console.ReadLine();
+            }
+            else if (CheckForLoan == false)
+            {
+                Console.WriteLine("\n" + "0. Tilbage til Hovedmenu");
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "0":
+                        mainMenu();
+                        break;
+                    default:
+                        Console.WriteLine("ugyldigt input");
+                        break;
+                }
+            }
+            
 
         }
 
@@ -155,47 +188,36 @@ namespace GettingRealUngHuset
             controller.GetKabellistHome();
         }
 
-        //private static void ShowType()
-        //{
 
 
+        private static void LoanMore()
+        {
+            Console.Clear();
+            Console.WriteLine("skal der lånes mere?\n" +
+                "1. ja\n" +
+                "2.nej");
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    ChooseTypeHome();
+                    break;
+                case "2":
+                    Confirmation(); // skal nok være en bekræfelse inden slutningen
+                    break;
+            }
+        }
 
-        //}
+        private static void Confirmation()
+        {
+            Console.Clear();
+            Controller controller = new Controller();
 
-        //private static void ChooseMaterial(string Input)
-        //{
-
-        //}
-        //private static void CheckHome()
-
-        //{
-
-        //}
-
-        //private static void LoanMore()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("skal der lånes mere?\n" +
-        //        "1. ja\n" +
-        //        "2.nej");
-        //    string input = Console.ReadLine();
-        //    switch (input)
-        //    {
-        //        case "1": ChooseType();
-        //            break;
-        //        case "2": Confirmation(); // skal nok være en bekræfelse inden slutningen
-        //            break;
-        //    }
-        //}
-
-        //private static void Confirmation()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("Bruger har lånt materiale 1,2,3\n" +
-        //        "enter for hovedmenu");
-        //    Console.ReadLine();
-        //    mainMenu();
-        //}
+            Console.WriteLine("Bruger har lånt materiale 1,2,3\n" +
+                "enter for hovedmenu");
+            Console.ReadLine();
+            mainMenu();
+        }
 
     }
 }
