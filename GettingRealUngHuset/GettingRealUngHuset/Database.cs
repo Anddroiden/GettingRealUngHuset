@@ -230,6 +230,33 @@ namespace GettingRealUngHuset
             }
         }
 
+        public void ReturnItem (string materialeID) //retuner materiale
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd1 = new SqlCommand("ReturnProcedure", con);
+
+                    cmd1.Parameters.Add(new SqlParameter("@kamaraID", materialeID));
+
+                    cmd1.ExecuteNonQuery();
+                }
+
+                catch (SqlException e)
+                {
+                    Console.WriteLine("HOW!" + e.Message);
+                }
+
+
+                
+            }
+
+
+        }
+
+
     }
 
 }
