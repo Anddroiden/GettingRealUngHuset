@@ -9,7 +9,7 @@ namespace GettingRealUngHuset
     class MenuUI
     {
         static Controller controller = new Controller();
-
+        static MenuUI menu = new MenuUI();
 
         public static bool CheckForLoan = false; // bruges til metoden til at vise materiale for at bestemme om vi skal låne materiale ud, eller bare vise materiale
         public static string username = "";
@@ -19,7 +19,7 @@ namespace GettingRealUngHuset
         public static List<string> ValgtMateriale = new List<string>(); // bruges til at kunne printe hvad der er blevet lånt
 
 
-        public static void mainMenu()
+        public void mainMenu()
         {
             
 
@@ -208,7 +208,7 @@ namespace GettingRealUngHuset
             Console.WriteLine(username + " " + userLastname + " har lånt " + PrintResult + "\n" +
                 "enter for hovedmenu");
             Console.ReadLine();
-            mainMenu();
+            menu.mainMenu();
         }
 
 
