@@ -23,7 +23,11 @@ namespace GettingRealUngHuset
 
         public void mainMenu()
         {
-            
+            username = "";
+            userLastname = "";
+            userPhone = "";
+            userEmail = "";
+            ValgtMateriale.Clear();
 
             Console.Clear();
             Console.WriteLine("udlåningssystem\n" +
