@@ -8,8 +8,10 @@ namespace GettingRealUngHuset
 {
     class MenuUI
     {
-        static Controller controller = new Controller();
-        static MenuUI menu = new MenuUI();
+        Controller controller = new Controller();
+
+        MenuUI menu = new MenuUI();
+
 
         public static bool CheckForLoan = false; // bruges til metoden til at vise materiale for at bestemme om vi skal låne materiale ud, eller bare vise materiale
         public static string username = "";
@@ -64,7 +66,7 @@ namespace GettingRealUngHuset
 
 
         }
-        private static void LoanMenu()  //udlåningsmenuen - Intast bruger Info
+        private void LoanMenu()  //udlåningsmenuen - Intast bruger Info
         {
             
             Console.Clear();
@@ -86,7 +88,7 @@ namespace GettingRealUngHuset
             
         }
 
-        private static void ChooseTypeHome() // her vælger man type af materiale, kan genanvendes flere gange -- Case 3 HJEMME
+        private void ChooseTypeHome() // her vælger man type af materiale, kan genanvendes flere gange -- Case 3 HJEMME
         {
             
             Console.Clear();
@@ -105,7 +107,7 @@ namespace GettingRealUngHuset
             }
         }
 
-        public static void ShowKamaraHome() // Kamara der er HJEMME
+        public void ShowKamaraHome() // Kamara der er HJEMME
         {
             
 
@@ -120,6 +122,8 @@ namespace GettingRealUngHuset
 
             controller.InsertLoanerIDandMatIDInLoaned();
             Console.ReadLine();
+
+            LoanMore();
 
         }
 
@@ -158,6 +162,8 @@ namespace GettingRealUngHuset
             Console.Clear();
             Controller controller = new Controller();
             controller.GetKamaralistHome();
+
+
         }
 
         private void ShowKabelLoaned() // Kabler der er HJEMME
@@ -167,7 +173,7 @@ namespace GettingRealUngHuset
             controller.GetKabellistHome();
         }
 
-        private static void LoanMore()
+        private void LoanMore()
         {
             Console.Clear();
             Console.WriteLine("skal der lånes mere?\n" +
@@ -185,7 +191,7 @@ namespace GettingRealUngHuset
             }
         }
 
-        private static void Confirmation() // bekræfter og printer hvilken bruger har lånt og hvad der er lånt
+        private void Confirmation() // bekræfter og printer hvilken bruger har lånt og hvad der er lånt
         {
             Console.Clear();
             string PrintResult = "";
