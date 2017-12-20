@@ -8,7 +8,7 @@ namespace GettingRealUngHuset
 {
     class MenuUI
     {
-        Controller controller = new Controller(); // new master
+        Controller controller = new Controller(); // new master again
 
         MenuUI menu = new MenuUI();
 
