@@ -13,7 +13,10 @@ namespace GettingRealUngHuset
         {
             Controller controller = new Controller();
             controller.InsertUser(LoanerName, LoanerLastname, LoanerPhone, LoanerEmail);
-        }
+        //}
+        ////public static string GetLoaner()
+        //{
 
+        }
     }
 }
