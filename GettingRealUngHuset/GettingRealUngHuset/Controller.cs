@@ -9,6 +9,7 @@ namespace GettingRealUngHuset
     class Controller
     {
         Database sql = new Database();
+       
 
         public void InsertUser(string LoanerName, string LoanerLastname, string LoanerPhone, string LoanerEmail)
         {
@@ -40,9 +41,12 @@ namespace GettingRealUngHuset
         }
 
         
-        public void InsertLoanerIDandMatIDInLoaned(string id)
+        public void InsertLoanerIDandMatIDInLoaned()
         {
+            int LoanerID = sql.loanerID;
+            int MatrialeID = sql.matrialeID;
 
+            sql.InsertLoanerIDandMatIDInLoaned(LoanerID, MatrialeID);
         }
 
 

@@ -10,7 +10,11 @@ namespace GettingRealUngHuset
 {
     class Database
     {
+
         private static string connectionString = "Server=EALSQL1.eal.local; Database =DB2017_B08; User ID =USER_B08; Password=SesamLukOp_08";
+
+       public int loanerID;
+       public int matrialeID;
 
         public void InsertUser(string LoanerName, string LoanerLastname, string LoanerPhone, string LoanerEmail)
         {
@@ -105,10 +109,9 @@ namespace GettingRealUngHuset
                 }
             }
         }
-
+        
         public void GetIDFromLoaner(string LoanerName, string LoanerLastname, string LoanerPhone, string LoanerEmail)
         {
-            Controller controller = new Controller();
 
             using (SqlConnection con = new SqlConnection(connectionString)) // SP GetIDFromLoaner
             {
@@ -126,9 +129,13 @@ namespace GettingRealUngHuset
                     cmd1.Parameters.Add(new SqlParameter("@LoanerEmail", LoanerEmail));
 
                     SqlDataReader LoanerID = cmd1.ExecuteReader();
-                    string ID = LoanerID.ToString();
+                    while (LoanerID.Read())
+                    {  
+                            Console.WriteLine(LoanerID[0]);
+                        loanerID = Convert.ToInt32(LoanerID[0]);
+                        Console.ReadLine();
+                    }
 
-                    Console.ReadLine();
                 }
                 catch (SqlException e)
                 {
@@ -137,6 +144,8 @@ namespace GettingRealUngHuset
             }
         }
 
+
+       
         public void InsertKameraIDInMaterial(string KamaraID)
         {
 
@@ -151,7 +160,9 @@ namespace GettingRealUngHuset
 
                     cmd1.Parameters.Add(new SqlParameter("@KamaraID", KamaraID));
 
-                    cmd1.ExecuteNonQuery(); // Retunere ikke data
+                    SqlDataReader KameraID = cmd1.ExecuteReader();
+                    
+
                 }
                 catch (SqlException e)
                 {
@@ -159,7 +170,7 @@ namespace GettingRealUngHuset
                 };
             }
         }
-
+        
         public void GetIDFromMatriale_Kamera(string KamaraID)
         {
 
@@ -173,12 +184,18 @@ namespace GettingRealUngHuset
                     SqlCommand cmd1 = new SqlCommand("GetIDFromMatriale_Kamera", con);
 
                     cmd1.CommandType = CommandType.StoredProcedure;
-
+                    
                     cmd1.Parameters.Add(new SqlParameter("@KamaraID", KamaraID));
                     
 
                     SqlDataReader MatID = cmd1.ExecuteReader();
-                    string ID = MatID.ToString();
+
+                    while(MatID.Read())
+                    {
+                        Console.WriteLine(MatID[0]);
+                        matrialeID = Convert.ToInt32(MatID[0]);
+                    }
+                    
 
                 }
                 catch (SqlException e)
@@ -188,11 +205,11 @@ namespace GettingRealUngHuset
             }
         }
 
-
-        public void InsertLoanerIDandMatIDInLoaned(string LoanerID, string matrialeID)
+        
+        public void InsertLoanerIDandMatIDInLoaned(int LoanerID, int MatrialeID)
         {
-
-            using (SqlConnection con = new SqlConnection(connectionString)) // SP InsertKameraIDInMaterial
+           
+            using (SqlConnection con = new SqlConnection(connectionString)) 
             {
                 try
                 {
@@ -202,6 +219,7 @@ namespace GettingRealUngHuset
                     cmd1.CommandType = CommandType.StoredProcedure;
 
                     cmd1.Parameters.Add(new SqlParameter("@LoanerID", LoanerID));
+                    cmd1.Parameters.Add(new SqlParameter("@MatrialeID", MatrialeID));
 
                     cmd1.ExecuteNonQuery(); // Retunere ikke data
                 }

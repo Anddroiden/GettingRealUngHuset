@@ -8,8 +8,9 @@ namespace GettingRealUngHuset
 {
     class MenuUI
     {
-        
-        public static void mainMenu()
+        Controller controller = new Controller();
+
+        public void mainMenu()
         {
             
 
@@ -54,9 +55,9 @@ namespace GettingRealUngHuset
 
 
         }
-        private static void LoanMenu()  //udlåningsmenuen - Intast bruger Info
+        private void LoanMenu()  //udlåningsmenuen - Intast bruger Info
         {
-            Controller controller = new Controller();
+            
             Console.Clear();
             Console.WriteLine("Indtast fornavn:");
             string username = Console.ReadLine();
@@ -68,7 +69,7 @@ namespace GettingRealUngHuset
             string userEmail = Console.ReadLine();
 
             controller.InsertUser(username, userLastname, userPhone, userEmail);
-            Console.Clear();
+            
             controller.GetIDFromLoaner(username, userLastname, userPhone, userEmail);
 
             
@@ -76,7 +77,7 @@ namespace GettingRealUngHuset
             
         }
 
-        private static void ChooseTypeHome() // her vælger man type af materiale, kan genanvendes flere gange -- Case 3 HJEMME
+        private void ChooseTypeHome() // her vælger man type af materiale, kan genanvendes flere gange -- Case 3 HJEMME
         {
             
             Console.Clear();
@@ -95,9 +96,9 @@ namespace GettingRealUngHuset
             }
         }
 
-        public static void ShowKamaraHome() // Kamara der er HJEMME
+        public void ShowKamaraHome() // Kamara der er HJEMME
         {
-            Controller controller = new Controller();
+            
 
             Console.Clear();
             controller.GetKamaralistHome();
@@ -105,20 +106,22 @@ namespace GettingRealUngHuset
             string KamaraID = Console.ReadLine();
 
             controller.InsertKameraIDInMaterial(KamaraID);
+            
+            controller.GetIDFromMatriale_Kamera(KamaraID);
 
-            controller.GetIDFromMatriale_Kamera(KamaraID); // retunere ikke 
+            controller.InsertLoanerIDandMatIDInLoaned();
             Console.ReadLine();
 
         }
 
-        private static void ShowKabelHome() // Kabler der er HJEMME
+        private void ShowKabelHome() // Kabler der er HJEMME
         {
             Console.Clear();
             Controller controller = new Controller();
             controller.GetKabellistHome();
         }
 
-        private static void ChooseTypeLoaned() //  Case 2 Udlånt
+        private void ChooseTypeLoaned() //  Case 2 Udlånt
         {
 
             Console.Clear();
@@ -141,14 +144,14 @@ namespace GettingRealUngHuset
             }
         }
 
-        private static void ShowKamaraLoaned() // Kamara der er HJEMME
+        private void ShowKamaraLoaned() // Kamara der er HJEMME
         {
             Console.Clear();
             Controller controller = new Controller();
             controller.GetKamaralistHome();
         }
 
-        private static void ShowKabelLoaned() // Kabler der er HJEMME
+        private void ShowKabelLoaned() // Kabler der er HJEMME
         {
             Console.Clear();
             Controller controller = new Controller();

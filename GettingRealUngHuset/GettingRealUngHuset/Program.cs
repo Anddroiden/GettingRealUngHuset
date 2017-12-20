@@ -10,7 +10,8 @@ namespace GettingRealUngHuset
     {
         static void Main(string[] args)
         {
-            MenuUI.mainMenu();
+            MenuUI menu = new MenuUI();
+            menu.mainMenu();
         }
     }
 }
