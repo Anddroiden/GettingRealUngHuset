@@ -243,6 +243,7 @@ namespace GettingRealUngHuset
                 "enter for hovedmenu");
             Console.ReadLine();
             mainMenu();
+
         }
 
         private void ReturnItem()
