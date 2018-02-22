@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Controller.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Iadd.cs" />
+    <Compile Include="IRemove.cs" />
     <Compile Include="Loaner.cs" />
     <Compile Include="MenuUI.cs" />
     <Compile Include="Program.cs" />
