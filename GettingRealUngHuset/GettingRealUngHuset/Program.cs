@@ -10,6 +10,7 @@ namespace GettingRealUngHuset
     {
         static void Main(string[] args)
         {
+            Console.Title = "Ungdomshuset udlåningssystem";
             MenuUI menu = new MenuUI();
             menu.mainMenu();
         }

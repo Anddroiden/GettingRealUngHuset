@@ -11,11 +11,8 @@ namespace GettingRealUngHuset
 
         public static void RegisterLoaner(string LoanerName, string LoanerLastname, string LoanerPhone, string LoanerEmail)
         {
-            Controller controller = new Controller();
-            controller.InsertUser(LoanerName, LoanerLastname, LoanerPhone, LoanerEmail);
-        //}
-        ////public static string GetLoaner()
-        //{
+        
+       
 
         }
     }

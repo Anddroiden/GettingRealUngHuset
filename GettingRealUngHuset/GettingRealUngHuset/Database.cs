@@ -62,14 +62,19 @@ namespace GettingRealUngHuset
                         while(list.Read())
                         {
 
-                        for (int i = 0; i < list.FieldCount; i++)
-                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            {
+                                Console.WriteLine("Kamera ID: " + list.GetValue(0));
 
-                            Console.WriteLine(list.GetValue(i));
+                                Console.WriteLine("Batteritid: " + list.GetValue(1));
+
+                                Console.WriteLine("Opløsning: " + list.GetValue(2));
+                            
+                            }
+                        Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - -");
                         }
-                        Console.WriteLine();
-                    }
                     Console.ReadLine();
+
                 }
                 catch (SqlException e)
                 {
@@ -94,12 +99,14 @@ namespace GettingRealUngHuset
 
                     while (list.Read())
                     {
-
                         for (int i = 0; i < list.FieldCount; i++)
                         {
-                            Console.WriteLine(list.GetValue(i)); // Mangler lidt forklaring i loop
+                            //Console.WriteLine(list.GetValue(i)); // Mangler lidt forklaring i loop
+                            Console.WriteLine("Kamara ID: " + list.GetValue(0));
+                            Console.WriteLine("Levetid :" + list.GetValue(1));
+                            Console.WriteLine("Opløsning :" + list.GetValue(2));
                         }
-
+                        Console.WriteLine("_____________________________");
                     }
 
                 }
@@ -230,7 +237,38 @@ namespace GettingRealUngHuset
             }
         }
 
-        public void ReturnItem (string materialeID) //retuner materiale
+
+        public void ShowKamaraLoaned()
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd1 = new SqlCommand("ShowKamaraLoaned", con);
+                    cmd1.CommandType = CommandType.StoredProcedure;
+
+                    SqlDataReader loanedlist = cmd1.ExecuteReader();
+
+                    while (loanedlist.Read())
+                    {
+                        
+                        for (int i = 0; i < loanedlist.FieldCount; i++)
+                        {
+                            Console.WriteLine(loanedlist.GetValue(i)); // Mangler lidt forklaring i loop
+                        } 
+                        Console.WriteLine("_____________");
+                    }
+                }
+
+                catch (SqlException e)
+                {
+                    Console.WriteLine("HOW!" + e.Message);
+                }
+
+            }
+        }
+        public void ReturnItem (int materialeID) //retuner materiale
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -239,6 +277,7 @@ namespace GettingRealUngHuset
                     con.Open();
                     SqlCommand cmd1 = new SqlCommand("ReturnProcedure", con);
 
+                    cmd1.CommandType = CommandType.StoredProcedure;
                     cmd1.Parameters.Add(new SqlParameter("@kamaraID", materialeID));
 
                     cmd1.ExecuteNonQuery();
@@ -249,13 +288,9 @@ namespace GettingRealUngHuset
                     Console.WriteLine("HOW!" + e.Message);
                 }
 
-
-                
             }
 
-
         }
-
 
     }
 

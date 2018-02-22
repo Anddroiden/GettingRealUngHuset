@@ -40,7 +40,6 @@ namespace GettingRealUngHuset
             sql.InsertKameraIDInMaterial(ItemNumber);
         }
 
-        
         public void InsertLoanerIDandMatIDInLoaned()
         {
             int LoanerID = sql.loanerID;
@@ -49,15 +48,14 @@ namespace GettingRealUngHuset
             sql.InsertLoanerIDandMatIDInLoaned(LoanerID, MatrialeID);
         }
 
+        public void ShowKamaraLoaned()
+        {
+            sql.ShowKamaraLoaned();
+        }
 
-        //public void GetKamaralistHome() // KAMERA LÅNT
-        //{
-        //    sql.GetKamaraListHome();
-        //}
-
-        //public void GetKabellistHome() // KABLE LÅNT
-        //{
-        //    sql.GetKabelListHome();
-        //}
+        public void ReturnItem(string MaterialeID)
+        {
+            int materialeID = Convert.ToInt32(MaterialeID);
+        }
     }
 }
