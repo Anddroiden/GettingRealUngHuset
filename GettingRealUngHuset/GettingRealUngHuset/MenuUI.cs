@@ -64,6 +64,9 @@ namespace GettingRealUngHuset
                 case "0": //afslut
                     Environment.Exit(0);
                     break;
+
+                default: Console.WriteLine("Ugyldigt Input");
+                    break;
             }
 
 
@@ -108,6 +111,8 @@ namespace GettingRealUngHuset
                 case "1": ShowKamaraHome();
                     break;
                 case "2": ShowKabelHome();
+                    break;
+                default: Console.WriteLine("ugyldigt input");
                     break;
             }
         }
@@ -177,6 +182,8 @@ namespace GettingRealUngHuset
                 case "2":
                     ShowKabelLoaned();
                     break;
+                default: Console.WriteLine("ugyldigt input");
+                    break;
             }
         }
 
@@ -206,6 +213,8 @@ namespace GettingRealUngHuset
                     break;
                 case "2":
                     Confirmation();
+                    break;
+                default: Console.WriteLine("ugyldigt input");
                     break;
             }
         }
